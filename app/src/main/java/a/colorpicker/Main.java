@@ -1,9 +1,18 @@
 package a.colorpicker;
 
+/** Part of ColorPicker application [Project 1 for COMP490 at Kalamazoo College]
+ *
+ * Date created: 20 September 2015
+ * Author: Ariah Lacey
+ */
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 public class Main extends AppCompatActivity {
 
@@ -12,7 +21,6 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,5 +42,39 @@ public class Main extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static int redInt;
+    public static int blueInt;
+    public static int greenInt;
+
+    /** Called when the user clicks the Done button */
+    public void submitValue(View view) {
+        //declare new intent
+        Intent intent = new Intent(this, MainFragment.class);
+
+        //Get values from EditText fields
+        EditText redValue = (EditText) findViewById(R.id.red_value);
+        EditText blueValue = (EditText) findViewById(R.id.blue_value);
+        EditText greenValue = (EditText) findViewById(R.id.green_value);
+
+        //Convert to integer-type values
+        redInt = Integer.parseInt(redValue.getText().toString());
+        blueInt = Integer.parseInt(blueValue.getText().toString());
+        greenInt = Integer.parseInt(greenValue.getText().toString());
+
+        startActivity(intent);
+    }
+
+    public static int getRed() {
+        return redInt;
+    }
+
+    public static int getBlue() {
+        return blueInt;
+    }
+
+    public static int getGreen() {
+        return greenInt;
     }
 }

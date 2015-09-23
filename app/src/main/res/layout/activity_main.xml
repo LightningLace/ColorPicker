@@ -1,4 +1,46 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
-    android:name="a.colorpicker.MainFragment" tools:layout="@layout/fragment_main"
-    android:layout_width="match_parent" android:layout_height="match_parent" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <EditText android:id="@+id/red_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter red value"
+        android:inputType="number"
+        android:layout_marginTop="65dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText android:id="@+id/blue_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter blue value"
+        android:inputType="number"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/red_value"
+        android:layout_centerHorizontal="true" />
+
+
+    <EditText android:id="@+id/green_value"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter green value"
+        android:inputType="number"
+        android:layout_below="@+id/blue_value"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:onClick="submitValue"
+        android:layout_below="@+id/green_value"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp" />
+
+</RelativeLayout>
