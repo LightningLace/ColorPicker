@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Main extends AppCompatActivity {
 
@@ -40,7 +41,6 @@ public class Main extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -48,33 +48,45 @@ public class Main extends AppCompatActivity {
     public static int blueInt;
     public static int greenInt;
 
-    /** Called when the user clicks the Done button */
-    public void submitValue(View view) {
-        //declare new intent
-        Intent intent = new Intent(this, MainFragment.class);
+    String errorMessage = "Integer must be between 0 and 255!";
+    Toast toast = new Toast(this);
 
-        //Get values from EditText fields
+
+    public int getRed() {
         EditText redValue = (EditText) findViewById(R.id.red_value);
-        EditText blueValue = (EditText) findViewById(R.id.blue_value);
-        EditText greenValue = (EditText) findViewById(R.id.green_value);
-
-        //Convert to integer-type values
         redInt = Integer.parseInt(redValue.getText().toString());
-        blueInt = Integer.parseInt(blueValue.getText().toString());
-        greenInt = Integer.parseInt(greenValue.getText().toString());
-
-        startActivity(intent);
-    }
-
-    public static int getRed() {
         return redInt;
     }
 
-    public static int getBlue() {
+    public int getBlue() {
+        EditText blueValue = (EditText) findViewById(R.id.blue_value);
+        blueInt = Integer.parseInt(blueValue.getText().toString());
         return blueInt;
     }
 
-    public static int getGreen() {
+    public int getGreen() {
+        EditText greenValue = (EditText) findViewById(R.id.green_value);
+        greenInt = Integer.parseInt(greenValue.getText().toString());
         return greenInt;
     }
+
+    /** Called when the user clicks the Done button */
+    public void submitValue(View view) {
+        if (this.getRed() < 0 || this.getRed() > 255) {
+            toast.makeText(this, errorMessage,Toast.LENGTH_SHORT);
+            throw new Error(errorMessage);
+        }
+        if (this.getBlue() < 0 || this.getBlue() > 255) {
+            toast.makeText(this, errorMessage,Toast.LENGTH_SHORT);
+            throw new Error(errorMessage);
+        }
+        if (this.getGreen() < 0 || this.getGreen() > 255) {
+            toast.makeText(this, errorMessage,Toast.LENGTH_SHORT);
+            throw new Error(errorMessage);
+        }
+        //declare new intent
+        Intent intent = new Intent(this, Display.class);
+        startActivity(intent);
+    }
+
 }
