@@ -9,6 +9,7 @@ package a.colorpicker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,52 +42,59 @@ public class Main extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
     public static int redInt;
     public static int blueInt;
     public static int greenInt;
+    Toast toast;
 
-    String errorMessage = "Integer must be between 0 and 255!";
-    Toast toast = new Toast(this);
-
-
-    public int getRed() {
-        EditText redValue = (EditText) findViewById(R.id.red_value);
-        redInt = Integer.parseInt(redValue.getText().toString());
+    public static int getRed() {
         return redInt;
     }
 
-    public int getBlue() {
-        EditText blueValue = (EditText) findViewById(R.id.blue_value);
-        blueInt = Integer.parseInt(blueValue.getText().toString());
+    public static int getBlue() {
         return blueInt;
     }
 
-    public int getGreen() {
-        EditText greenValue = (EditText) findViewById(R.id.green_value);
-        greenInt = Integer.parseInt(greenValue.getText().toString());
+    public static int getGreen() {
         return greenInt;
     }
 
     /** Called when the user clicks the Done button */
     public void submitValue(View view) {
-        if (this.getRed() < 0 || this.getRed() > 255) {
-            toast.makeText(this, errorMessage,Toast.LENGTH_SHORT);
-            throw new Error(errorMessage);
-        }
-        if (this.getBlue() < 0 || this.getBlue() > 255) {
-            toast.makeText(this, errorMessage,Toast.LENGTH_SHORT);
-            throw new Error(errorMessage);
-        }
-        if (this.getGreen() < 0 || this.getGreen() > 255) {
-            toast.makeText(this, errorMessage,Toast.LENGTH_SHORT);
-            throw new Error(errorMessage);
-        }
-        //declare new intent
-        Intent intent = new Intent(this, Display.class);
-        startActivity(intent);
-    }
 
+        //Get values from EditText fields
+        EditText redValue = (EditText) findViewById(R.id.red_value);
+        EditText blueValue = (EditText) findViewById(R.id.blue_value);
+        EditText greenValue = (EditText) findViewById(R.id.green_value);
+
+        //Convert to integer-type values
+        redInt = Integer.parseInt(redValue.getText().toString());
+        blueInt = Integer.parseInt(blueValue.getText().toString());
+        greenInt = Integer.parseInt(greenValue.getText().toString());
+
+        //Check that integers are valid
+        toast = new Toast(this);
+        if (redInt < 0 || redInt > 255) {
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.makeText(this, "Value must be between 0 and 255!", Toast.LENGTH_LONG);
+        }
+        else if (blueInt < 0 || blueInt > 255) {
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.makeText(this, "Value must be between 0 and 255!", Toast.LENGTH_LONG);
+        }
+        else if (greenInt < 0 || greenInt > 255) {
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.makeText(this, "Value must be between 0 and 255!", Toast.LENGTH_LONG);
+        }
+
+        else {
+            //declare new intent
+            Intent intent = new Intent(this, Display.class);
+            startActivity(intent);
+        }
+    }
 }
