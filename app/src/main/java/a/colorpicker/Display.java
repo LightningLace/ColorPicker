@@ -1,11 +1,12 @@
 package a.colorpicker;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Canvas;
+import android.view.View;
 import android.widget.ImageView;
 
 /**
@@ -37,9 +38,7 @@ public class Display extends AppCompatActivity {
         //Draw box
         imageView.setBackgroundColor(Color.rgb(main.getRed(), main.getGreen(), main.getBlue()));
 
-
         /* Can't actually get this part to work.... will fix later
-
         paint = new Paint();
         paint.setColor(Color.CYAN);
         paint.setStyle(Paint.Style.FILL);
@@ -47,6 +46,10 @@ public class Display extends AppCompatActivity {
         canvas.drawRect(100, 100, 100, 100, paint);
 
         */
+    }
+
+    public void restart (View view){
+        startActivity(new Intent(Display.this, Main.class));
     }
 
 

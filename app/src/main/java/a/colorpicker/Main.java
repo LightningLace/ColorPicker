@@ -81,18 +81,21 @@ public class Main extends AppCompatActivity {
         if (redInt < 0 || redInt > 255) {
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.makeText(this, "Value must be between 0 and 255!", Toast.LENGTH_LONG);
+            toast.show();
         }
         else if (blueInt < 0 || blueInt > 255) {
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.makeText(this, "Value must be between 0 and 255!", Toast.LENGTH_LONG);
+            toast.show();
         }
         else if (greenInt < 0 || greenInt > 255) {
             toast.setGravity(Gravity.TOP, 0, 0);
             toast.makeText(this, "Value must be between 0 and 255!", Toast.LENGTH_LONG);
+            toast.show();
         }
 
         else {
-            //declare new intent
+            //declare new intent and start activity
             Intent intent = new Intent(this, Display.class);
             startActivity(intent);
         }
